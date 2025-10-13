@@ -64,8 +64,13 @@ INNER JOIN species ON observations.species_id = species.id;
 
 -- MISSION 12: ¿Cuál es la especie más observada por cada región?; 
 -- Agrupa por región y especie, y ordena por cantidad;
-SELECT COUNT(species_id), species_id FROM observations
+SELECT regions.name AS region, species.scientific_name, COUNT(*) AS total 
+FROM observations
 INNER JOIN species ON observations.species_id = species.id
 INNER JOIN regions ON observations.region_id = regions.id
-GROUP BY region_id and species_id
-ORDER BY COUNT(species_id) DESC;
+GROUP BY region, species.scientific_name
+ORDER BY region, total DESC
+LIMIT 2;
+
+-- MISSION 13: Inserta una nueva observación ficticia en la tabla `observations`; 
+-- Asegúrate de incluir todos los campos requeridos por el esquema.;
