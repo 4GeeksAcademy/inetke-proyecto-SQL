@@ -69,8 +69,5 @@ FROM observations
 INNER JOIN species ON observations.species_id = species.id
 INNER JOIN regions ON observations.region_id = regions.id
 GROUP BY region, species.scientific_name
-ORDER BY region, total DESC
-LIMIT 2;
+ORDER BY region, total DESC;
 
--- MISSION 13: Inserta una nueva observación ficticia en la tabla `observations`; 
--- Asegúrate de incluir todos los campos requeridos por el esquema.;
