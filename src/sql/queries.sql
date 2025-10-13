@@ -5,34 +5,34 @@ SELECT * FROM observations;
 
 
 -- MISSION 1: ¿Cuáles son las primeras 10 observaciones registradas?;
---SELECT * FROM observations
---LIMIT 10;
+SELECT * FROM observations
+LIMIT 10;
 
 -- MISSION 2: Qué identificadores de región (`region_id`) aparecen en los datos?;
---SELECT DISTINCT region_id FROM observations;
+SELECT DISTINCT region_id FROM observations;
 
 -- MISSION 3: ¿Cuántas especies distintas (`species_id`) se han observado?;
 -- Combina COUNT con DISTINCT para no contar duplicados;
---SELECT COUNT(DISTINCT species_id) 
---FROM observations;
+SELECT COUNT(DISTINCT species_id) 
+FROM observations;
  
 -- MISSION 4: ¿Cuántas observaciones hay para la región con `region_id = 2`?;
 -- Aplica una condición con WHERE;
---SELECT region_id FROM observations
---WHERE region_id = 2;
+SELECT region_id FROM observations
+WHERE region_id = 2;
 
 -- MISSION 5: ¿Cuántas observaciones se registraron el día `1998-08-08`?;
 --Filtra por fecha exacta usando igualdad;
---SELECT COUNT(observation_date) FROM observations
---WHERE observation_date = '1998-08-08';
+SELECT COUNT(observation_date) FROM observations
+WHERE observation_date = '1998-08-08';
 
 
 -- MISSION 6: ¿Cuál es el `region_id` con más observaciones?;  
 --Agrupa por región y cuenta cuántas veces aparece cada una;
---SELECT COUNT(region_id), region_id FROM observations
---GROUP BY region_id
---ORDER BY COUNT(region_id) DESC
---LIMIT 1;
+SELECT COUNT(region_id), region_id FROM observations
+GROUP BY region_id
+ORDER BY COUNT(region_id) DESC
+LIMIT 1;
 
 -- MISSION 7: ¿Cuáles son los 5 species_id más frecuentes?;
 --Agrupa, ordena por cantidad descendente y limita el resultado;
@@ -70,4 +70,3 @@ INNER JOIN species ON observations.species_id = species.id
 INNER JOIN regions ON observations.region_id = regions.id
 GROUP BY region, species.scientific_name
 ORDER BY region, total DESC;
-
