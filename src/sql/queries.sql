@@ -18,7 +18,7 @@ FROM observations;
  
 -- MISSION 4: ¿Cuántas observaciones hay para la región con `region_id = 2`?;
 -- Aplica una condición con WHERE;
-SELECT region_id FROM observations
+SELECT COUNT (*) FROM observations
 WHERE region_id = 2;
 
 -- MISSION 5: ¿Cuántas observaciones se registraron el día `1998-08-08`?;
@@ -45,12 +45,14 @@ LIMIT 5;
 -- Agrupa por especie y usa HAVING para aplicar una condición;
 SELECT COUNT(species_id), species_id FROM observations
 GROUP BY species_id
-HAVING COUNT(species_id) > 5;
+HAVING COUNT(species_id) < 5;
 
 -- MISSION 9: ¿Qué observadores (`observer`) registraron más observaciones?;  
 -- Agrupa por el nombre del observador y cuenta los registros;
 SELECT COUNT(observer), observer FROM observations
-GROUP BY observer;
+GROUP BY observer
+ORDER BY COUNT(observer) DESC
+LIMIT 10;
 
 -- MISSION 10: Muestra el nombre de la región (`regions.name`) para cada observación; 
 -- Relaciona `observations` con `regions` usando `region_id`;
